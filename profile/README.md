@@ -1,171 +1,198 @@
 <div align="center">
   <img src="https://avatars.githubusercontent.com/u/211993100" width="140" alt="Clutch Protocol Logo" />
-  
+
   # Clutch Protocol
-  
-  **🚀 Revolutionizing the $100B+ Ride-Sharing Market with Blockchain Technology**
-  
-  *Decentralized • Transparent • Community-Owned*
-  
-  [![License](https://img.shields.io/badge/License-Custom-blue.svg)](LICENSE)
+
+  **Decentralized ride-sharing on a custom blockchain**
+
+  *Lower fees · On-chain transparency · Client-side signing*
+
+  [![Alpha](https://img.shields.io/badge/status-alpha-orange.svg)](#status)
   [![Rust](https://img.shields.io/badge/Built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
-  [![Blockchain](https://img.shields.io/badge/Powered%20by-Blockchain-purple.svg)](#)
-  [![Status](https://img.shields.io/badge/Status-MVP%20Development-yellow.svg)](#roadmap)
-  
+  [![Docs](https://img.shields.io/badge/docs-clutchprotocol.io-blue.svg)](https://docs.clutchprotocol.io)
+
+  **[Website](https://clutchprotocol.io)** · **[Documentation](https://docs.clutchprotocol.io)** · **[Demo App](https://demo.clutchprotocol.io)** · **[npm SDK](https://www.npmjs.com/package/clutch-hub-sdk-js)**
+
 </div>
 
 ---
 
-## 💡 **Vision & Mission**
+## What is Clutch?
 
-Clutch Protocol is building the future of decentralized mobility — **cutting ride-sharing fees by 60%** while empowering communities through transparent, blockchain-powered infrastructure.
+Clutch Protocol is an open, modular blockchain stack for decentralized ride-sharing. Apps connect through a GraphQL Hub API and JavaScript SDK; transactions are signed client-side and settled on-chain with Aura consensus.
 
-### 🎯 **Key Benefits**
-- **💰 Lower Costs**: 5-8% fees vs. 15-25% industry standard
-- **⚡ Instant Payouts**: Real-time payments for drivers
-- **🏛️ Community Governance**: DAO-driven decision making
-- **🔒 Full Transparency**: All transactions on-chain
-- **🌐 Trustless Operations**: No central intermediaries
+**Target fee model:** 5–8% platform fees vs. 15–25% on traditional platforms.
+
+> **Note:** Community governance (DAO) is on the [roadmap](#roadmap). It is not yet implemented in the current codebase.
 
 ---
 
-## 🏗️ **Architecture Overview**
+## Repositories
 
-Clutch Protocol consists of four core components working together to create a decentralized ride-sharing ecosystem:
+| Repository | Role | Stack |
+|------------|------|-------|
+| [clutch-node](https://github.com/clutchprotocol/clutch-node) | Blockchain core (Aura, custom txs) | Rust |
+| [clutch-hub-api](https://github.com/clutchprotocol/clutch-hub-api) | App bridge — GraphQL, faucet, JWT auth | Rust |
+| [clutch-hub-sdk-js](https://github.com/clutchprotocol/clutch-hub-sdk-js) | Client SDK — signing, queries, subscriptions | TypeScript |
+| [clutch-hub-demo-app](https://github.com/clutchprotocol/clutch-hub-demo-app) | Reference passenger/driver demo | React / Vite |
+| [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) | Block explorer (indexer + REST API) | Rust + React |
+| [clutch-deploy](https://github.com/clutchprotocol/clutch-deploy) | Full-stack Docker Compose | Docker |
+| [clutch-docs](https://github.com/clutchprotocol/clutch-docs) | Developer documentation site | Docusaurus |
+| [clutchprotocol.github.io](https://github.com/clutchprotocol/clutchprotocol.github.io) | Marketing website | HTML / CSS |
+| [.github](https://github.com/clutchprotocol/.github) | Organization profile | — |
 
-### **🔧 Core Infrastructure**
-
-| Component | Description | Technology | Status |
-|-----------|-------------|------------|--------|
-| **[clutch-node](https://github.com/clutchprotocol/clutch-node)** | Blockchain core with Aura consensus | Rust | 🚧 Development |
-| **[clutch-hub-api](https://github.com/clutchprotocol/clutch-hub-api)** | API layer bridging apps to blockchain | Node.js | 🚧 Development |
-| **[clutch-hub-sdk-js](https://github.com/clutchprotocol/clutch-hub-sdk-js)** | JavaScript SDK for transaction signing | TypeScript | 🚧 Development |
-| **[clutch-hub-demo-app](https://github.com/clutchprotocol/clutch-hub-demo-app)** | Reference implementation & MVP demo | React | 🚧 Development |
-
----
-
-## 💸 **Tokenomics & Fee Distribution**
-
-**Example: $10 Ride Fee Distribution**
-- 💵 **Driver**: $9.00 (90%)
-- 🔗 **Network Nodes**: $0.50 (5%)  
-- 👨‍💻 **Developers**: $0.50 (5%)
-
-*Compare to traditional platforms taking 15-25%!*
+**Canonical docs:** https://docs.clutchprotocol.io
 
 ---
 
-## 🛠️ **Technology Stack**
+## Architecture
 
-<div align="center">
-  
-| Layer | Technology | Purpose |
-|-------|------------|---------|
-| **Consensus** | Aura (Authority Round) | Fast, energy-efficient validation |
-| **Blockchain** | Custom Rust Implementation | High throughput, low latency |
-| **Cryptography** | secp256k1 / ed25519 | Secure transaction signing |
-| **P2P Network** | libp2p | Decentralized communication |
-| **APIs** | REST + WebSocket | Real-time interactions |
-  
-</div>
-
----
-
-## 🚀 **Getting Started**
-
-### **🔧 For Developers**
-```bash
-# Clone the blockchain node
-git clone https://github.com/clutchprotocol/clutch-node.git
-cd clutch-node
-cargo build --release
-
-# Run a local node
-./target/release/clutch-node --dev
+```
+Demo App / Your dApp
+        │
+        ▼
+  clutch-hub-sdk-js  (client-side signing)
+        │
+        ▼
+  clutch-hub-api     (GraphQL + /faucet)
+        │
+        ▼
+  clutch-node        (WebSocket JSON-RPC, Aura validators)
+        │
+        ▼
+  clutch-explorer    (indexes blocks → Postgres → REST UI)
 ```
 
-### **📱 For App Builders**
-```bash
-# Install the JavaScript SDK
-npm install @clutchprotocol/hub-sdk-js
+---
 
-# Start building on Clutch
-npm create clutch-app my-ride-app
+## Quick start
+
+Run the full stack locally with [clutch-deploy](https://github.com/clutchprotocol/clutch-deploy):
+
+```bash
+git clone https://github.com/clutchprotocol/clutch-deploy.git
+cd clutch-deploy
+cp .env.example .env
+docker compose up -d
 ```
 
-### **🌐 Try the Demo**
-Visit our [Demo App](https://github.com/clutchprotocol/clutch-hub-demo-app) to see Clutch Protocol in action!
+| Service | URL |
+|---------|-----|
+| Hub API | http://localhost:3000/health |
+| Demo app | http://localhost:5173 |
+| Explorer | http://localhost:5174 |
+| GraphQL | http://localhost:3000/graphql |
+
+Full guide: [Quick Start](https://docs.clutchprotocol.io/getting-started/quickstart)
+
+### SDK example
+
+```bash
+npm install clutch-hub-sdk-js
+```
+
+```javascript
+import { ClutchHubSdk } from 'clutch-hub-sdk-js';
+
+const sdk = new ClutchHubSdk('http://localhost:3000', publicKey);
+
+await sdk.requestFaucet(publicKey);
+
+const unsigned = await sdk.createUnsignedRideRequest({
+  pickup: { latitude: 35.7, longitude: 51.4 },
+  dropoff: { latitude: 35.8, longitude: 51.5 },
+  fare: 1000,
+});
+const signed = await sdk.signTransaction(unsigned, privateKey);
+await sdk.submitTransaction(signed.rawTransaction);
+```
+
+See [Ride Lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecycle) for the full passenger/driver flow.
 
 ---
 
-## 🗺️ **Roadmap** {#roadmap}
+## Live environments
 
-| Phase | Timeline | Milestone | Status |
-|-------|----------|-----------|--------|
-| **🏗️ MVP Development** | Sep 2025 | Core blockchain + demo app | 🚧 **In Progress** |
-| **🧪 Testnet Launch** | Q4 2025 | Public testing & community feedback | ⏳ Upcoming |
-| **🏛️ DAO Governance** | Q1 2026 | Community-driven protocol updates | 📋 Planned |
-| **🌉 Cross-Chain** | Q2 2026 | Cosmos IBC integration | 📋 Planned |
-| **⚡ Layer-2 Scaling** | Q3 2026 | High-throughput solutions | 📋 Planned |
+| Environment | Demo | API |
+|-------------|------|-----|
+| Local | http://localhost:5173 | http://localhost:3000 |
+| Stage | https://app-stage.clutchprotocol.io | https://api-stage.clutchprotocol.io |
+| Production demo | https://demo.clutchprotocol.io | — |
 
 ---
 
-## 🤝 **Community & Contribution**
+## Technology
 
-### **🎯 Current Focus**
-We're building toward our **MVP launch in September 2025** — 12 weeks of intensive development!
-
-### **💪 How to Contribute**
-1. **🍴 Fork** any repository
-2. **🌟 Create** a feature branch
-3. **💻 Code** following our guidelines
-4. **📤 Submit** a pull request
-5. **🎉 Join** the decentralized future!
-
-### **📢 Stay Connected**
-- 📧 **GitHub Discussions**: [Community Hub](https://github.com/orgs/clutchprotocol/discussions)
-- 🐛 **Issues**: Report bugs and feature requests
-- 📚 **Documentation**: Coming soon via GitHub Wiki
+| Layer | Technology |
+|-------|------------|
+| Consensus | Aura (authority round-robin) |
+| Blockchain | Custom Rust, non-EVM RLP transactions |
+| Signing | secp256k1, Keccak-256, client-side only |
+| P2P | libp2p |
+| Hub API | GraphQL HTTP + WebSocket subscriptions |
+| Node RPC | WebSocket JSON-RPC |
 
 ---
 
-## 🏆 **Why Clutch Protocol?**
+## Fee distribution (target)
+
+For a $10 ride:
+
+- **Driver:** $9.00 (90%)
+- **Network nodes:** $0.50 (5%)
+- **Development fund:** $0.50 (5%)
+
+---
+
+## Roadmap {#roadmap}
+
+| Phase | Status | Milestone |
+|-------|--------|-----------|
+| Core stack + demo | Done | Node, Hub API, SDK, demo app, deploy |
+| Developer docs | Done | [docs.clutchprotocol.io](https://docs.clutchprotocol.io) |
+| Block explorer | Done | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) |
+| Public testnet (stage) | Live | Stage URLs + faucet |
+| DAO governance | Planned | On-chain community voting |
+| Cross-chain (Cosmos IBC) | Planned | Interoperability |
+| Layer-2 scaling | Planned | Higher throughput |
+
+---
+
+## Status {#status}
+
+Alpha software — APIs may change without notice. Use at your own risk.
+
+---
+
+## Contribute
+
+1. Fork a repository
+2. Create a feature branch
+3. Follow [Conventional Commits](https://www.conventionalcommits.org/)
+4. Open a pull request
+
+- [GitHub Discussions](https://github.com/orgs/clutchprotocol/discussions)
+- [Documentation](https://docs.clutchprotocol.io)
+- Report bugs via GitHub Issues in the relevant repo
+
+---
+
+## Security
+
+- Private keys never leave the client — all signing is done via the SDK
+- Wallet-based JWT auth (no username/password)
+- Every transaction is auditable on-chain
+
+Details: [Security](https://docs.clutchprotocol.io/reference/security)
+
+---
 
 <div align="center">
-  
-| Traditional Platforms | Clutch Protocol |
-|----------------------|------------------|
-| ❌ 15-25% fees | ✅ 5-8% fees |
-| ❌ Central control | ✅ Community governance |
-| ❌ Delayed payouts | ✅ Instant settlements |
-| ❌ Closed ecosystem | ✅ Open development |
-| ❌ Limited transparency | ✅ Full on-chain auditability |
-  
-</div>
 
----
+**Building decentralized mobility, one block at a time**
 
-## 🔒 **Security & Trust**
+*Created and maintained by [Mehran Mazhar](https://github.com/MehranMazhar)*
 
-- **🔐 Client-side signing**: Your keys never leave your device
-- **📊 On-chain transparency**: Every transaction is auditable
-- **🛡️ Battle-tested crypto**: secp256k1 & ed25519 signatures
-- **🚫 No central points of failure**: Truly decentralized infrastructure
-
----
-
-## 📄 **License**
-
-This project is licensed under a custom license. See individual repository LICENSE files for details.
-
----
-
-<div align="center">
-  
-**🚗💨 Building the Future of Mobility, One Block at a Time**
-
-*Created and maintained by [Mehran Mazhar](https://github.com/MehranMazhar) • Powered by Community*
-
-**[🌟 Star us](https://github.com/clutchprotocol) • [🤝 Contribute](https://github.com/orgs/clutchprotocol/discussions) • [📖 Learn More](https://github.com/clutchprotocol/clutch-node)**
+**[Star us](https://github.com/clutchprotocol) · [Docs](https://docs.clutchprotocol.io) · [Demo](https://demo.clutchprotocol.io) · [Discussions](https://github.com/orgs/clutchprotocol/discussions)**
 
 </div>
