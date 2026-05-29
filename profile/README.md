@@ -5,7 +5,7 @@
 
   **Decentralized ride-sharing on a custom blockchain**
 
-  *Lower fees · On-chain transparency · Client-side signing*
+  *On-chain ride payments · Client-side signing · Driver-first CLT economics*
 
   [![Alpha](https://img.shields.io/badge/status-alpha-orange.svg)](#status)
   [![Rust](https://img.shields.io/badge/Built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
@@ -21,7 +21,7 @@
 
 Clutch Protocol is an open, modular blockchain stack for decentralized ride-sharing. Apps connect through a GraphQL Hub API and JavaScript SDK; transactions are signed client-side and settled on-chain with Aura consensus.
 
-**Target fee model:** 5–8% platform fees vs. 15–25% on traditional platforms.
+**CLT economics:** Drivers keep most of each fare. Referrers earn up to 4% (default 2%+2%) on RidePay. Validators earn a fixed block reward (50 CLT/block), separate from rides. See [CLT Economics](https://docs.clutchprotocol.io/clutch-node/clt-economics).
 
 > **Note:** Community governance (DAO) is on the [roadmap](#roadmap). It is not yet implemented in the current codebase.
 
@@ -134,13 +134,16 @@ See [Ride Lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecyc
 
 ---
 
-## Fee distribution (target)
+## CLT economics
 
-For a $10 ride:
+| Layer | Mechanism | Default |
+|-------|-----------|---------|
+| **RidePay** | Referrer fees + driver remainder | 2% request + 2% offer |
+| **Blocks** | Reward to block author | 50 CLT per block |
 
-- **Driver:** $9.00 (90%)
-- **Network nodes:** $0.50 (5%)
-- **Development fund:** $0.50 (5%)
+Example: 10 CLT fare, one RidePay, both referrers → driver 8 CLT, referrers 1 CLT each.
+
+Full details: [docs.clutchprotocol.io/clutch-node/clt-economics](https://docs.clutchprotocol.io/clutch-node/clt-economics)
 
 ---
 
