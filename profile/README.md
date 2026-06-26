@@ -3,23 +3,47 @@
 
   # Clutch Protocol
 
-  **Decentralized ride-sharing on a custom blockchain**
+  **Open-source ride-sharing blockchain — on-chain ride lifecycle, client-side signing, driver-first CLT payouts.**
 
-  *On-chain ride payments · Client-side signing · Driver-first CLT economics*
+  *Aura consensus · Rust node · GraphQL Hub API · JavaScript SDK*
 
   [![Alpha](https://img.shields.io/badge/status-alpha-orange.svg)](#status)
   [![Rust](https://img.shields.io/badge/Built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
   [![Docs](https://img.shields.io/badge/docs-clutchprotocol.io-blue.svg)](https://docs.clutchprotocol.io)
 
-  **[Website](https://clutchprotocol.io)** · **[Documentation](https://docs.clutchprotocol.io)** · **[Demo App](https://demo.clutchprotocol.io)** · **[npm SDK](https://www.npmjs.com/package/clutch-hub-sdk-js)**
+  **[Try stage demo](https://app-stage.clutchprotocol.io)** · **[Documentation](https://docs.clutchprotocol.io)** · [Website](https://clutchprotocol.io) · [npm SDK](https://www.npmjs.com/package/clutch-hub-sdk-js)
 
 </div>
+
+---
+
+## Try in 3 steps (no install)
+
+1. **Open the demo** → [app-stage.clutchprotocol.io](https://app-stage.clutchprotocol.io) (public testnet)
+2. **Create a wallet** → choose Passenger or Driver, then click **Request CLT** (faucet)
+3. **Run a ride** → passenger: request on the map · driver: view requests and submit an offer
+
+Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecycle) · [Environments](https://docs.clutchprotocol.io/getting-started/environments)
+
+---
+
+## Run locally in 3 steps
+
+1. **Start the stack**
+   ```bash
+   git clone https://github.com/clutchprotocol/clutch-deploy.git && cd clutch-deploy
+   cp .env.example .env && docker compose up -d
+   ```
+2. **Open the demo** → http://localhost:5173 · API health → http://localhost:3000/health
+3. **Build with the SDK** → `npm install clutch-hub-sdk-js` — see [Quick Start](https://docs.clutchprotocol.io/getting-started/quickstart)
 
 ---
 
 ## What is Clutch?
 
 Clutch Protocol is an open, modular blockchain stack for decentralized ride-sharing. Apps connect through a GraphQL Hub API and JavaScript SDK; transactions are signed client-side and settled on-chain with Aura consensus.
+
+**New here?** Start with the pinned [Discussions welcome thread](https://github.com/orgs/clutchprotocol/discussions) or the [docs intro](https://docs.clutchprotocol.io/intro).
 
 **CLT economics:** Drivers keep most of each fare. Referrers earn up to 4% (default 2%+2%) on RidePay. Validators earn a fixed block reward (50 CLT/block), separate from rides. See [CLT Economics](https://docs.clutchprotocol.io/clutch-node/clt-economics).
 
@@ -65,27 +89,7 @@ Demo App / Your dApp
 
 ---
 
-## Quick start
-
-Run the full stack locally with [clutch-deploy](https://github.com/clutchprotocol/clutch-deploy):
-
-```bash
-git clone https://github.com/clutchprotocol/clutch-deploy.git
-cd clutch-deploy
-cp .env.example .env
-docker compose up -d
-```
-
-| Service | URL |
-|---------|-----|
-| Hub API | http://localhost:3000/health |
-| Demo app | http://localhost:5173 |
-| Explorer | http://localhost:5174 |
-| GraphQL | http://localhost:3000/graphql |
-
-Full guide: [Quick Start](https://docs.clutchprotocol.io/getting-started/quickstart)
-
-### SDK example
+## SDK example
 
 ```bash
 npm install clutch-hub-sdk-js
@@ -196,6 +200,6 @@ Details: [Security](https://docs.clutchprotocol.io/reference/security)
 
 *Created and maintained by [Mehran Mazhar](https://github.com/MehranMazhar)*
 
-**[Star us](https://github.com/clutchprotocol) · [Docs](https://docs.clutchprotocol.io) · [Demo](https://demo.clutchprotocol.io) · [Discussions](https://github.com/orgs/clutchprotocol/discussions)**
+**[Star us](https://github.com/clutchprotocol) · [Stage demo](https://app-stage.clutchprotocol.io) · [Docs](https://docs.clutchprotocol.io) · [Discussions](https://github.com/orgs/clutchprotocol/discussions)**
 
 </div>
