@@ -17,13 +17,13 @@
 
 ---
 
-## Try in 3 steps (no install, ~10 min the first time)
+## Try in 3 steps (no install, ~5 min the first time)
 
 1. **Open the demo** → [app-stage.clutchprotocol.io](https://app-stage.clutchprotocol.io) (public testnet) and create a wallet — Passenger or Driver.
-2. **Get test CLT** → ☰ → **Top up with USDT** shows your wallet's permanent Tron address. Send it *Nile testnet* USDT from a Tron wallet switched to the Nile network (e.g. [TronLink](https://www.tronlink.org/)); the [Nile faucet](https://nileex.io/join/getJoinPage) hands out test TRX and USDT. The treasury credits the matching CLT once it sees the transfer — keep the panel open and your address is polled first.
+2. **Get test CLT** → ☰ → **Top up with USDT** shows your wallet's permanent Tron address. Copy it, paste it into the **USDT** box of the [Nile faucet](https://nileex.io/join/getJoinPage), pass its human check, and click Obtain — it sends 1,000 test USDT straight to that address, no Tron wallet needed. The treasury credits the matching CLT once it sees the transfer, usually within a few minutes; keep the panel open and your address is polled first.
 3. **Run a ride** → passenger: request on the map · driver: view requests and submit an offer
 
-No signup, no app download, no real money — stage settles on Tron's Nile testnet, whose USDT has no value. Setting up the Tron testnet wallet is most of the ten minutes.
+No signup, no app download, no wallet to install, no real money — stage settles on Tron's Nile testnet, whose USDT has no value. Waiting for the deposit to be credited is most of the five minutes.
 
 Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecycle) · [Deposits](https://docs.clutchprotocol.io/clutch-treasury/deposits) · [Environments](https://docs.clutchprotocol.io/getting-started/environments)
 
