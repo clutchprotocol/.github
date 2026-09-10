@@ -17,15 +17,15 @@
 
 ---
 
-## Try in 3 steps (no install, ~2 min)
+## Try in 3 steps (no install, ~10 min the first time)
 
-1. **Open the demo** → [app-stage.clutchprotocol.io](https://app-stage.clutchprotocol.io) (public testnet)
-2. **Create a wallet** → choose Passenger or Driver, then click **Request CLT** (faucet)
+1. **Open the demo** → [app-stage.clutchprotocol.io](https://app-stage.clutchprotocol.io) (public testnet) and create a wallet — Passenger or Driver.
+2. **Get test CLT** → ☰ → **Top up with USDT** shows your wallet's permanent Tron address. Send it *Nile testnet* USDT from a Tron wallet switched to the Nile network (e.g. [TronLink](https://www.tronlink.org/)); the [Nile faucet](https://nileex.io/join/getJoinPage) hands out test TRX and USDT. The treasury credits the matching CLT once it sees the transfer — keep the panel open and your address is polled first.
 3. **Run a ride** → passenger: request on the map · driver: view requests and submit an offer
 
-No signup, no app download, no real money — CLT is free test currency.
+No signup, no app download, no real money — stage settles on Tron's Nile testnet, whose USDT has no value. Setting up the Tron testnet wallet is most of the ten minutes.
 
-Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecycle) · [Environments](https://docs.clutchprotocol.io/getting-started/environments)
+Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecycle) · [Deposits](https://docs.clutchprotocol.io/clutch-treasury/deposits) · [Environments](https://docs.clutchprotocol.io/getting-started/environments)
 
 ---
 
@@ -41,7 +41,7 @@ Clutch Protocol is an open, modular blockchain stack for decentralized ride-shar
 - **Auditable end to end.** Every step — request, offer, acceptance, payment, cancellation — is a typed transaction on a public ledger.
 - **Fully open source.** Run the entire stack locally with one `docker compose` command (below).
 
-**CLT economics:** Drivers keep most of each fare. Referrers earn up to 4% (default 2%+2%) on RidePay. Validators earn a fixed block reward (50 CLT/block), separate from rides. See [CLT Economics](https://docs.clutchprotocol.io/clutch-node/clt-economics).
+**CLT economics:** Drivers keep the remainder of each fare. Referrers earn up to 4% (default 2%+2%) on RidePay. Validators earn a flat 1,000 CLT ($0.001) fee per transaction, credited to the block author — no block reward, no share of the fare. CLT is fully reserved: 1 USD = 1,000,000 CLT, minted only against USDT deposits and redeemable back to USDT. See [CLT Economics](https://docs.clutchprotocol.io/clutch-node/clt-economics).
 
 ---
 
@@ -52,7 +52,8 @@ Clutch is **alpha** and built in the open. Being upfront about the edges:
 **Working today**
 - On-chain ride lifecycle: request → offer → acceptance → pay → cancel, all as signed transactions
 - Rust node with Aura consensus (~1s blocks), libp2p P2P, WebSocket JSON-RPC
-- GraphQL Hub API with wallet-based (signed-challenge) JWT auth and a testnet faucet
+- GraphQL Hub API with wallet-based (signed-challenge) JWT auth
+- Fully-reserved CLT: USDT (TRC-20) deposits mint CLT, redemptions burn it back to USDT (live since 2026-09-04)
 - Client SDK (npm), reference React demo, block explorer, one-command local stack
 - Public stage testnet you can use right now
 
@@ -68,12 +69,14 @@ The operational layer (disputes, reputation, matching) is genuinely the hard par
 
 ## Run locally in 3 steps
 
-1. **Start the stack**
+1. **Clone and set a JWT secret** — the Hub API refuses the placeholder shipped in `.env.example`
    ```bash
    git clone https://github.com/clutchprotocol/clutch-deploy.git && cd clutch-deploy
-   cp .env.example .env && docker compose up -d
+   cp .env.example .env
+   sed -i "s/^JWT_SECRET=.*/JWT_SECRET=$(openssl rand -hex 32)/" .env
    ```
-2. **Open the demo** → http://localhost:5173 · API health → http://localhost:3000/health
+   (PowerShell equivalent in the [Quick Start](https://docs.clutchprotocol.io/getting-started/quickstart).)
+2. **Start the stack** → `docker compose up -d`, then open the demo at http://localhost:5173 · API health → http://localhost:3000/health
 3. **Build with the SDK** → `npm install clutch-hub-sdk-js` — see [Quick Start](https://docs.clutchprotocol.io/getting-started/quickstart)
 
 ---
@@ -83,7 +86,8 @@ The operational layer (disputes, reputation, matching) is genuinely the hard par
 | Repository | Role | Stack |
 |------------|------|-------|
 | [clutch-node](https://github.com/clutchprotocol/clutch-node) | Blockchain core (Aura, custom txs) | Rust |
-| [clutch-hub-api](https://github.com/clutchprotocol/clutch-hub-api) | App bridge — GraphQL, faucet, JWT auth | Rust |
+| [clutch-hub-api](https://github.com/clutchprotocol/clutch-hub-api) | App bridge — GraphQL, JWT auth | Rust |
+| [clutch-treasury](https://github.com/clutchprotocol/clutch-treasury) | Fully-reserved CLT — USDT deposits, four-eyes mint, redemptions | Rust |
 | [clutch-hub-sdk-js](https://github.com/clutchprotocol/clutch-hub-sdk-js) | Client SDK — signing, queries, subscriptions | TypeScript |
 | [clutch-hub-demo-app](https://github.com/clutchprotocol/clutch-hub-demo-app) | Reference passenger/driver demo | React / Vite |
 | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) | Block explorer (indexer + REST API) | Rust + React |
@@ -105,7 +109,7 @@ Demo App / Your dApp
   clutch-hub-sdk-js  (client-side signing)
         │
         ▼
-  clutch-hub-api     (GraphQL + /faucet)
+  clutch-hub-api     (GraphQL + WebSocket subscriptions)
         │
         ▼
   clutch-node        (WebSocket JSON-RPC, Aura validators)
@@ -128,12 +132,13 @@ import { ClutchHubSdk } from 'clutch-hub-sdk-js';
 // Pass the private key so the SDK can sign the auth challenge + transactions locally.
 const sdk = new ClutchHubSdk('http://localhost:3000', publicKey, privateKey);
 
-await sdk.requestFaucet(publicKey);
+// Fund the wallet first: deposit USDT (TRC-20) to its Tron address — there is no faucet.
+// https://docs.clutchprotocol.io/clutch-treasury/deposits
 
 const unsigned = await sdk.createUnsignedRideRequest({
   pickup: { latitude: 35.7, longitude: 51.4 },
   dropoff: { latitude: 35.8, longitude: 51.5 },
-  fare: 1000,
+  fare: 5_000_000n, // $5.00 — amounts are bigint, at 1 USD = 1,000,000 CLT
 });
 const signed = await sdk.signTransaction(unsigned, privateKey);
 await sdk.submitTransaction(signed.rawTransaction);
@@ -170,9 +175,10 @@ See [Ride Lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecyc
 | Layer | Mechanism | Default |
 |-------|-----------|---------|
 | **RidePay** | Referrer fees + driver remainder | 2% request + 2% offer |
-| **Blocks** | Reward to block author | 50 CLT per block |
+| **Every transaction** | Flat fee to the block author — no block reward, no share of the fare | 1,000 CLT ($0.001) |
+| **Supply** | Fully reserved: minted only against USDT deposits, burned on redemption | 1 USD = 1,000,000 CLT |
 
-Example: 10 CLT fare, one RidePay, both referrers → driver 8 CLT, referrers 1 CLT each.
+Example: $5.00 fare (5,000,000 CLT), one RidePay, both referrers → driver 4,800,000 CLT ($4.80), each referrer 100,000 CLT ($0.10).
 
 Full details: [docs.clutchprotocol.io/clutch-node/clt-economics](https://docs.clutchprotocol.io/clutch-node/clt-economics)
 
@@ -185,7 +191,8 @@ Full details: [docs.clutchprotocol.io/clutch-node/clt-economics](https://docs.cl
 | Core stack + demo | Done | Node, Hub API, SDK, demo app, deploy |
 | Developer docs | Done | [docs.clutchprotocol.io](https://docs.clutchprotocol.io) |
 | Block explorer | Done | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) |
-| Public testnet (stage) | Live | Stage URLs + faucet |
+| Public testnet (stage) | Live | Stage URLs; test CLT via Nile USDT deposits |
+| Fully-reserved CLT | Live | USDT deposits mint CLT; redemptions burn it back (since 2026-09-04) |
 | Reputation + dispute resolution | Planned | Ratings, arbitration, no-show handling |
 | DAO governance | Planned | On-chain community voting |
 | Cross-chain (Cosmos IBC) | Planned | Interoperability |
