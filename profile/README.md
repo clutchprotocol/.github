@@ -193,7 +193,8 @@ Full details: [docs.clutchprotocol.io/clutch-node/clt-economics](https://docs.cl
 | Block explorer | Done | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) |
 | Public testnet (stage) | Live | Stage URLs; test CLT via Nile USDT deposits |
 | Fully-reserved CLT | Live | USDT deposits mint CLT; redemptions burn it back (since 2026-09-04) |
-| Reputation + dispute resolution | Planned | Ratings, arbitration, no-show handling |
+| Dispute resolution | Partial | A held fare auto-releases to the driver two hours after acceptance, so a rider cannot take a ride and keep the money by never releasing it. Arbitration and no-show handling are not built. |
+| Reputation | Planned | Ratings, and the history a rating would have to be earned against |
 | DAO governance | Planned | On-chain community voting |
 | Cross-chain (Cosmos IBC) | Planned | Interoperability |
 | Layer-2 scaling | Planned | Higher throughput |
