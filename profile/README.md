@@ -193,7 +193,7 @@ Full details: [docs.clutchprotocol.io/clutch-node/clt-economics](https://docs.cl
 | Block explorer | Done | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) |
 | Public testnet (stage) | Live | Stage URLs; test CLT via Nile USDT deposits |
 | Fully-reserved CLT | Live | USDT deposits mint CLT; redemptions burn it back (since 2026-09-04) |
-| Dispute resolution | Partial | A held fare auto-releases to the driver two hours after acceptance, so a rider cannot take a ride and keep the money by never releasing it. Arbitration and no-show handling are not built. |
+| Dispute resolution | Built, not yet active | The rule that stops a rider taking a ride and keeping the money — a held fare releases to the driver two hours after acceptance — is implemented and merged. It is a genesis-committed consensus parameter, so it is **off on the current testnet** and switches on with the mainnet genesis. Arbitration and no-show handling are not built. |
 | Reputation | Planned | Ratings, and the history a rating would have to be earned against |
 | DAO governance | Planned | On-chain community voting |
 | Cross-chain (Cosmos IBC) | Planned | Interoperability |
