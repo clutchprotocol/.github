@@ -86,10 +86,8 @@ The operational layer (disputes, reputation, matching) is genuinely the hard par
 | Repository | Role | Stack |
 |------------|------|-------|
 | [clutch-node](https://github.com/clutchprotocol/clutch-node) | Blockchain core (Aura, custom txs) | Rust |
-| [clutch-hub-api](https://github.com/clutchprotocol/clutch-hub-api) | App bridge — GraphQL, JWT auth | Rust |
+| [clutch-hub](https://github.com/clutchprotocol/clutch-hub) | The Hub API (GraphQL app bridge, JWT auth), the client SDK (signing, queries, subscriptions) and the reference passenger/driver demo | Rust + TypeScript + React |
 | [clutch-treasury](https://github.com/clutchprotocol/clutch-treasury) | Fully-reserved CLT — USDT deposits, four-eyes mint, redemptions | Rust |
-| [clutch-hub-sdk-js](https://github.com/clutchprotocol/clutch-hub-sdk-js) | Client SDK — signing, queries, subscriptions | TypeScript |
-| [clutch-hub-demo-app](https://github.com/clutchprotocol/clutch-hub-demo-app) | Reference passenger/driver demo | React / Vite |
 | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) | Block explorer (indexer + REST API) | Rust + React |
 | [clutch-deploy](https://github.com/clutchprotocol/clutch-deploy) | Full-stack Docker Compose | Docker |
 | [clutch-docs](https://github.com/clutchprotocol/clutch-docs) | Developer documentation site | Docusaurus |
