@@ -20,7 +20,7 @@
 ## Try in 3 steps (no install, ~5 min the first time)
 
 1. **Open the demo** → [app-stage.clutchprotocol.io](https://app-stage.clutchprotocol.io) (public testnet) and create a wallet — Passenger or Driver.
-2. **Get test CLT** → ☰ → **Top up with USDT** shows your wallet's permanent Tron address. Copy it, paste it into the **USDT** box of the [Nile faucet](https://nileex.io/join/getJoinPage), pass its human check, and click Obtain — it sends 1,000 test USDT straight to that address, no Tron wallet needed. The treasury credits the matching CLT once it sees the transfer, usually within a few minutes; keep the panel open and your address is polled first.
+2. **Get test CLT** → ☰ → **Wallet** → **Top up** shows your wallet's permanent Tron address. Copy it, paste it into the **USDT** box of the [Nile faucet](https://nileex.io/join/getJoinPage), pass its human check, and click Obtain — it sends 1,000 test USDT straight to that address, no Tron wallet needed. The treasury credits the matching CLT once it sees the transfer, usually within a few minutes; keep the panel open and your address is polled first.
 3. **Run a ride** → passenger: request on the map · driver: view requests and submit an offer
 
 No signup, no app download, no wallet to install, no real money — stage settles on Tron's Nile testnet, whose USDT has no value. Waiting for the deposit to be credited is most of the five minutes.
@@ -31,7 +31,9 @@ Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-sta
 
 ## What is Clutch?
 
-Clutch Protocol is an open, modular blockchain stack for decentralized ride-sharing. Apps connect through a GraphQL Hub API and JavaScript SDK; transactions are **signed client-side** and settled **on-chain** with Aura consensus. There is no central operator sitting between rider and driver holding funds or data.
+1. **What it is:** Clutch Protocol is an open-source ride-sharing blockchain. Passengers and drivers send ride requests, offers and payments as transactions on its own chain, [`clutch-node`](https://github.com/clutchprotocol/clutch-node).
+2. **How apps use it:** [`clutch-hub`](https://github.com/clutchprotocol/clutch-hub) has the Hub API, a JavaScript SDK that signs on the user's device, and a reference app for passengers and drivers. [`clutch-explorer`](https://github.com/clutchprotocol/clutch-explorer) shows the blocks and transactions.
+3. **Money and servers:** Rides are paid in CLT, a token fully backed by USDT, and [`clutch-treasury`](https://github.com/clutchprotocol/clutch-treasury) gives CLT for USDT and pays USDT back. [`clutch-deploy`](https://github.com/clutchprotocol/clutch-deploy) runs the public testnet and the mainnet, which has been live since 2026-09-19 (mainnet deposits are not open yet).
 
 **Why on-chain actually buys you something here — not just "no middleman":**
 
