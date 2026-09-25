@@ -154,6 +154,9 @@ See [Ride Lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecyc
 |-------------|------|-----|
 | Local | http://localhost:5173 | http://localhost:3000 |
 | Stage | https://app-stage.clutchprotocol.io | https://api-stage.clutchprotocol.io |
+| Mainnet | https://app.clutchprotocol.io | https://api.clutchprotocol.io |
+
+Stage runs the public testnet (chain 2077). Mainnet runs chain 1000 and has been live since 2026-09-19, but deposits are not open there yet, so you cannot get CLT on mainnet today.
 
 ---
 
