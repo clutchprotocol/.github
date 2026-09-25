@@ -67,9 +67,7 @@ Full guide: https://docs.clutchprotocol.io/getting-started/quickstart
 | Repo | What it does |
 |------|----------------|
 | [clutch-node](https://github.com/clutchprotocol/clutch-node) | Blockchain core — Aura consensus, custom RLP txs, WebSocket JSON-RPC |
-| [clutch-hub-api](https://github.com/clutchprotocol/clutch-hub-api) | GraphQL bridge, wallet JWT auth, testnet faucet |
-| [clutch-hub-sdk-js](https://github.com/clutchprotocol/clutch-hub-sdk-js) | JavaScript/TypeScript SDK — client-side signing, subscriptions |
-| [clutch-hub-demo-app](https://github.com/clutchprotocol/clutch-hub-demo-app) | Reference React demo (passenger + driver) |
+| [clutch-hub](https://github.com/clutchprotocol/clutch-hub) | The Hub API (GraphQL bridge, wallet JWT auth), the JavaScript/TypeScript SDK (client-side signing, subscriptions) and the reference React demo (passenger + driver) |
 | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) | Block indexer, REST API, web UI |
 | [clutch-deploy](https://github.com/clutchprotocol/clutch-deploy) | Docker Compose for the full stack |
 | [clutch-docs](https://github.com/clutchprotocol/clutch-docs) | Developer docs (Docusaurus) |
@@ -148,9 +146,9 @@ https://github.com/orgs/clutchprotocol/issues?q=is%3Aopen+is%3Aissue+label%3A%22
 If no labeled issues exist yet, useful entry points:
 
 - **Docs** — examples, tutorials, typo fixes ([clutch-docs](https://github.com/clutchprotocol/clutch-docs))
-- **Tests** — unit/integration coverage ([clutch-hub-api](https://github.com/clutchprotocol/clutch-hub-api), [clutch-hub-sdk-js](https://github.com/clutchprotocol/clutch-hub-sdk-js))
+- **Tests** — unit/integration coverage ([clutch-hub](https://github.com/clutchprotocol/clutch-hub): the Hub API and the SDK)
 - **Explorer UI** — readability and search ([clutch-explorer](https://github.com/clutchprotocol/clutch-explorer))
-- **Demo app** — UX polish ([clutch-hub-demo-app](https://github.com/clutchprotocol/clutch-hub-demo-app))
+- **Demo app** — UX polish ([clutch-hub `apps/demo`](https://github.com/clutchprotocol/clutch-hub/tree/main/apps/demo))
 
 ---
 
