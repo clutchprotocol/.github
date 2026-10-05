@@ -26,7 +26,7 @@
 
 No signup, no app download, no wallet to install, no real money — stage settles on Tron's Nile testnet, whose USDT has no value. Waiting for the deposit to be credited is most of the five minutes.
 
-**Want the mainnet instead?** [app.clutchprotocol.io](https://app.clutchprotocol.io) is a capped pilot with real USDT: top up with USDT (TRC-20 on Tron), up to $100 per top-up and $200 per day, and network fees apply. Withdrawals are not open yet. It is alpha software, so top up only what you can afford to lose.
+**Want the mainnet instead?** [app.clutchprotocol.io](https://app.clutchprotocol.io) is a capped pilot with real USDT: top up with USDT (TRC-20 on Tron), up to $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after. The relay charges less today ($3.00 and $1.50); the difference is not refunded and stays in the reserve as backing. Withdrawals are not open yet. It is alpha software, so top up only what you can afford to lose.
 
 Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecycle) · [Deposits](https://docs.clutchprotocol.io/clutch-treasury/deposits) · [Environments](https://docs.clutchprotocol.io/getting-started/environments)
 
@@ -161,7 +161,7 @@ See [Ride Lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecyc
 | Stage | https://app-stage.clutchprotocol.io | https://api-stage.clutchprotocol.io |
 | Mainnet | https://app.clutchprotocol.io | https://api.clutchprotocol.io |
 
-Stage runs the public testnet (chain 2077). Mainnet runs chain 1000 as a capped pilot and has been open to every account since 2026-10-05. You get CLT there by topping up with USDT (TRC-20 on Tron): at most $100 per top-up and $200 per day, and network fees apply. Withdrawals are not open yet. It is alpha software with real money, so use only what you can afford to lose. There is no mainnet explorer yet.
+Stage runs the public testnet (chain 2077). Mainnet runs chain 1000 as a capped pilot and has been open to every account since 2026-10-05. You get CLT there by topping up with USDT (TRC-20 on Tron): at most $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after (the relay charges less today, $3.00 and $1.50, and the difference is not refunded: it stays in the reserve as backing). Withdrawals are not open yet. It is alpha software with real money, so use only what you can afford to lose. There is no mainnet explorer yet.
 
 ---
 
