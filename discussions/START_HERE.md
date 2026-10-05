@@ -19,7 +19,7 @@
 
 Welcome to **Clutch Protocol** — an open-source stack for decentralized ride-sharing where the full ride lifecycle (request → offer → accept → pay → cancel) lives on-chain, with **client-side signing** and **driver-first CLT economics**.
 
-> **Alpha software** — public testnet for experimentation. APIs may change. No mainnet yet.
+> **Alpha software** — the mainnet is live as a capped pilot (real money, small limits), and the public testnet is for experiments. APIs may change.
 
 ---
 
@@ -27,17 +27,20 @@ Welcome to **Clutch Protocol** — an open-source stack for decentralized ride-s
 
 | Resource | Link |
 |----------|------|
-| **Stage demo** (recommended) | https://app-stage.clutchprotocol.io |
+| **Mainnet app** (pilot, real USDT, small limits) | https://app.clutchprotocol.io |
+| **Testnet demo** (recommended to start) | https://app-stage.clutchprotocol.io |
 | **Documentation** | https://docs.clutchprotocol.io |
 | **Website** | https://clutchprotocol.io |
 | **npm SDK** | https://www.npmjs.com/package/clutch-hub-sdk-js |
 
-**Quick try on stage:**
+**Quick try on the testnet:**
 
 1. Open https://app-stage.clutchprotocol.io
 2. Choose **Passenger** or **Driver** and generate a wallet
-3. Request test CLT from the built-in faucet
+3. Open **Wallet** → **Top up** and send Nile test USDT to the address it shows (there is no faucet button: the treasury mints the matching CLT)
 4. Passenger: request a ride on the map · Driver: view requests and submit an offer
+
+**The mainnet pilot** works the same way at https://app.clutchprotocol.io, with real USDT (TRC-20 on Tron): at most $100 per top-up and $200 per day, and network fees apply. Withdrawals are not open yet. Use only what you can afford to lose.
 
 ---
 
@@ -94,7 +97,7 @@ Tutorial: https://docs.clutchprotocol.io/getting-started/ride-lifecycle
 
 - **Drivers** receive most of each fare on `RidePay`
 - **Referrers** earn up to **4%** per payment installment (default **2% request + 2% offer**)
-- **Validators** earn a fixed **50 CLT/block** reward — separate from ride fares
+- **Validators** earn a flat **1,000 CLT ($0.001)** fee per transaction, credited to the block author — no block reward, and no share of the fare
 
 **App developers:** run your own Hub API, set your wallet as referrer in config, and earn CLT when users complete rides on your deployment.
 
@@ -104,11 +107,11 @@ Details: https://docs.clutchprotocol.io/getting-started/app-developer-incentives
 
 ## Honest limitations (alpha)
 
-- Public **testnet only** — no mainnet
+- The **mainnet is a capped pilot**: small limits, withdrawals not open yet, three validators on one host, the treasury's mint and payout keys are plain keys on the server, and the crypto has not been audited ([Mainnet readiness](https://docs.clutchprotocol.io/reference/mainnet-readiness))
 - **DAO / governance** is on the roadmap — not implemented yet
 - `ConfirmArrival` / `ComplainArrival` tx types exist as **stubs** in the node
 - Hub **subscriptions poll** the node (~0.5–1s), not push-from-chain
-- Small validator set on the public stage testnet
+- Small validator set on both the mainnet pilot and the public stage testnet
 
 FAQ: https://docs.clutchprotocol.io/reference/faq
 
@@ -120,9 +123,10 @@ FAQ: https://docs.clutchprotocol.io/reference/faq
 |-----------|--------|
 | Public stage testnet (multi-node Aura) | **Live** |
 | Hub API + SDK + demo + explorer | **Live** |
+| Mainnet pilot (chain 1000, capped, since 2026-10-05) | **Live** — top-ups open, withdrawals not open yet |
 | DAO governance | Planned |
 | Arrival confirmation tx types | Planned (stubs in node) |
-| Mainnet | Planned — no fixed date |
+| Production mainnet (independent validators, audit, hardware-backed keys, higher limits) | Planned — no fixed date |
 
 ---
 
