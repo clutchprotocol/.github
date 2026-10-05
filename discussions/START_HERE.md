@@ -40,7 +40,7 @@ Welcome to **Clutch Protocol** — an open-source stack for decentralized ride-s
 3. Open **Wallet** → **Top up** and send Nile test USDT to the address it shows (there is no faucet button: the treasury mints the matching CLT)
 4. Passenger: request a ride on the map · Driver: view requests and submit an offer
 
-**The mainnet pilot** works the same way at https://app.clutchprotocol.io, with real USDT (TRC-20 on Tron): at most $100 per top-up and $200 per day, and network fees apply. Withdrawals are not open yet. Use only what you can afford to lose.
+**The mainnet pilot** works the same way at https://app.clutchprotocol.io, with real USDT (TRC-20 on Tron): at most $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after. The relay charges less today ($3.00 and $1.50); the difference is not refunded and stays in the reserve as backing. Withdrawals are not open yet. Use only what you can afford to lose.
 
 ---
 
