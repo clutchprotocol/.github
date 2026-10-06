@@ -3,7 +3,7 @@
 
   # Clutch Protocol
 
-  **Open-source ride-sharing on a blockchain — the whole ride lifecycle settles on-chain, keys stay on the client, and drivers get paid in seconds instead of next week.**
+  **Open-source ride-sharing on a blockchain — the whole ride lifecycle settles on-chain, keys stay in your own wallet, and drivers get paid in seconds instead of next week.**
 
   *Aura consensus · Rust node · GraphQL Hub API · JavaScript SDK*
 
@@ -20,11 +20,11 @@
 
 ## Try in 3 steps (no install, ~5 min the first time)
 
-1. **Open the demo** → [app-stage.clutchprotocol.io](https://app-stage.clutchprotocol.io) (public testnet) and create a wallet — Passenger or Driver.
+1. **Open the demo** → [app-stage.clutchprotocol.io](https://app-stage.clutchprotocol.io) (public testnet) and connect your wallet (MetaMask or Trust Wallet) — Passenger or Driver.
 2. **Get test CLT** → ☰ → **Wallet** → **Top up** shows your wallet's permanent Tron address. Copy it, paste it into the **USDT** box of the [Nile faucet](https://nileex.io/join/getJoinPage), pass its human check, and click Obtain — it sends 1,000 test USDT straight to that address, no Tron wallet needed. The treasury credits the matching CLT once it sees the transfer, usually within a few minutes; keep the panel open and your address is polled first.
 3. **Run a ride** → passenger: request on the map · driver: view requests and submit an offer
 
-No signup, no app download, no wallet to install, no real money — stage settles on Tron's Nile testnet, whose USDT has no value. Waiting for the deposit to be credited is most of the five minutes.
+No signup and no real money. You need a wallet that can sign a message, such as MetaMask or Trust Wallet (on a phone, open the page inside the wallet app); the app never holds your keys. Stage settles on Tron's Nile testnet, whose USDT has no value. Waiting for the deposit to be credited is most of the five minutes.
 
 **Want the mainnet instead?** [app.clutchprotocol.io](https://app.clutchprotocol.io) is a capped pilot with real USDT: top up with USDT (TRC-20 on Tron), up to $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after. The relay charges less today ($3.00 and $1.50); the difference is not refunded and stays in the reserve as backing. Withdrawals are not open yet. It is alpha software, so top up only what you can afford to lose.
 
@@ -42,7 +42,7 @@ Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-sta
 
 - **Payout speed.** Payment settles on-chain in seconds when a ride completes. No weekly payout cycle, no "pending balance." The driver has the money before the next pickup.
 - **No chargebacks.** The passenger signs the payment directly, so there's no card issuer that can claw it back three weeks later. (The honest flip side: passengers give up that protection — see [What's not built yet](#honest-status).)
-- **You own the account.** No email/password. You hold a keypair; keys never leave your device. Auth is a signed challenge, not a stored credential.
+- **You own the account.** No email/password. Your own wallet holds the keypair (MetaMask and Trust Wallet work); keys never leave it. Auth is a signed challenge, not a stored credential.
 - **Auditable end to end.** Every step — request, offer, acceptance, payment, cancellation — is a typed transaction on a public ledger.
 - **Fully open source.** Run the entire stack locally with one `docker compose` command (below).
 
@@ -135,6 +135,8 @@ npm install clutch-hub-sdk-js
 import { ClutchHubSdk } from 'clutch-hub-sdk-js';
 
 // Pass the private key so the SDK can sign the auth challenge + transactions locally.
+// In a browser app, pass a signer for the user's wallet (MetaMask, Trust Wallet) instead of a key:
+//   const signer = await connectWallet((await discoverInjectedWallets())[0]);
 const sdk = new ClutchHubSdk('http://localhost:3000', publicKey, privateKey);
 
 // Fund the wallet first: deposit USDT (TRC-20) to its Tron address — there is no faucet.
@@ -232,7 +234,7 @@ Alpha software — APIs may change without notice. Use at your own risk. The mai
 
 ## Security
 
-- Private keys never leave the client — all signing is done via the SDK
+- Private keys never leave the user's device — a browser app holds none: the user's wallet (MetaMask, Trust Wallet) signs through the SDK
 - Wallet-based JWT auth via signed challenge (no username/password)
 - Every transaction is auditable on-chain
 

@@ -36,7 +36,7 @@ Welcome to **Clutch Protocol** — an open-source stack for decentralized ride-s
 **Quick try on the testnet:**
 
 1. Open https://app-stage.clutchprotocol.io
-2. Choose **Passenger** or **Driver** and generate a wallet
+2. Choose **Passenger** or **Driver** and connect your wallet (MetaMask or Trust Wallet; on a phone, open the page inside the wallet app)
 3. Open **Wallet** → **Top up** and send Nile test USDT to the address it shows (there is no faucet button: the treasury mints the matching CLT)
 4. Passenger: request a ride on the map · Driver: view requests and submit an offer
 
@@ -85,7 +85,7 @@ Your app + SDK  →  Hub API (unsigned tx)  →  sign locally  →  submit signe
 ```
 
 1. **Build** — App asks the Hub API for an unsigned transaction (`createUnsignedRideRequest`, etc.)
-2. **Sign** — User signs the hash locally with secp256k1 (**private keys never sent to the server**)
+2. **Sign** — The user signs with secp256k1: a key signs the hash, a wallet such as MetaMask or Trust Wallet signs a short readable text (**private keys never sent to the server**, and the reference app holds none)
 3. **Submit** — App sends signed RLP hex via `sendRawTransaction`
 4. **Settle** — Node verifies signature/nonce, updates ride state, includes tx in a block
 
