@@ -26,7 +26,7 @@
 
 No signup and no real money. You need a wallet that can sign a message, such as MetaMask, Trust Wallet or TronLink (on a phone, open the page inside the wallet app); the app never holds your keys. Stage settles on Tron's Nile testnet, whose USDT has no value. Waiting for the deposit to be credited is most of the five minutes.
 
-**Want the mainnet instead?** [app.clutchprotocol.io](https://app.clutchprotocol.io) is a capped pilot with real USDT: top up with USDT (TRC-20 on Tron), up to $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after. The relay charges less today ($3.00 and $1.50); the difference is not refunded and stays in the reserve as backing. Withdrawals are not open yet. It is alpha software, so top up only what you can afford to lose.
+**Want the mainnet instead?** [app.clutchprotocol.io](https://app.clutchprotocol.io) is a capped pilot with real USDT: top up with USDT (TRC-20 on Tron), up to $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after. The relay charges less today ($3.00 and $1.50); the difference is not refunded and stays in the reserve as backing. Withdrawals are open: $25 to $50 each, with a $2.00 fee. It is alpha software, so top up only what you can afford to lose.
 
 Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecycle) · [Deposits](https://docs.clutchprotocol.io/clutch-treasury/deposits) · [Environments](https://docs.clutchprotocol.io/getting-started/environments)
 
@@ -36,7 +36,7 @@ Read the full guide: [Ride lifecycle](https://docs.clutchprotocol.io/getting-sta
 
 1. **What it is:** Clutch Protocol is an open-source ride-sharing blockchain. Passengers and drivers send ride requests, offers and payments as transactions on its own chain, [`clutch-node`](https://github.com/clutchprotocol/clutch-node).
 2. **How apps use it:** [`clutch-hub`](https://github.com/clutchprotocol/clutch-hub) has the Hub API, a JavaScript SDK that signs on the user's device, and a reference app for passengers and drivers. [`clutch-explorer`](https://github.com/clutchprotocol/clutch-explorer) shows the blocks and transactions.
-3. **Money and servers:** Rides are paid in CLT, a token fully backed by USDT, and [`clutch-treasury`](https://github.com/clutchprotocol/clutch-treasury) gives CLT for USDT and pays USDT back. [`clutch-deploy`](https://github.com/clutchprotocol/clutch-deploy) runs the public testnet and the mainnet. The mainnet is live as a capped pilot: top-ups are open, withdrawals are not open yet.
+3. **Money and servers:** Rides are paid in CLT, a token fully backed by USDT, and [`clutch-treasury`](https://github.com/clutchprotocol/clutch-treasury) gives CLT for USDT and pays USDT back. [`clutch-deploy`](https://github.com/clutchprotocol/clutch-deploy) runs the public testnet and the mainnet. The mainnet is live as a capped pilot: top-ups and withdrawals are open.
 
 **Why on-chain actually buys you something here — not just "no middleman":**
 
@@ -61,7 +61,7 @@ Clutch is **alpha** and built in the open. Being upfront about the edges:
 - Fully-reserved CLT: USDT (TRC-20) deposits mint CLT, redemptions burn it back to USDT (live since 2026-09-04)
 - Client SDK (npm), reference React demo, block explorer, one-command local stack
 - Public stage testnet you can use right now
-- Mainnet pilot (chain 1000): open to every account since 2026-10-05, with small limits. Top-ups are open; withdrawals are not open yet
+- Mainnet pilot (chain 1000): open to every account since 2026-10-05, with small limits. Top-ups and withdrawals are open
 
 **Not built yet (and this is the interesting part)**
 - **Production hardening of the mainnet** — the pilot's three validators run on one host, the treasury's mint and payout keys are plain keys on the server, and the crypto has not been audited. That is why the limits are small. See [Mainnet readiness](https://docs.clutchprotocol.io/reference/mainnet-readiness)
@@ -163,7 +163,7 @@ See [Ride Lifecycle](https://docs.clutchprotocol.io/getting-started/ride-lifecyc
 | Stage | https://app-stage.clutchprotocol.io | https://api-stage.clutchprotocol.io |
 | Mainnet | https://app.clutchprotocol.io | https://api.clutchprotocol.io |
 
-Stage runs the public testnet (chain 2077). Mainnet runs chain 1000 as a capped pilot and has been open to every account since 2026-10-05. You get CLT there by topping up with USDT (TRC-20 on Tron): at most $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after (the relay charges less today, $3.00 and $1.50, and the difference is not refunded: it stays in the reserve as backing). Withdrawals are not open yet. It is alpha software with real money, so use only what you can afford to lose. There is no mainnet explorer yet.
+Stage runs the public testnet (chain 2077). Mainnet runs chain 1000 as a capped pilot and has been open to every account since 2026-10-05. You get CLT there by topping up with USDT (TRC-20 on Tron): at most $100 per top-up and $200 per day. A network fee is taken from each top-up: $4.00 the first time and $2.00 after (the relay charges less today, $3.00 and $1.50, and the difference is not refunded: it stays in the reserve as backing). Withdrawals are open: $25 to $50 each, with a $2.00 fee. It is alpha software with real money, so use only what you can afford to lose. There is no mainnet explorer yet.
 
 ---
 
@@ -203,7 +203,7 @@ Full details: [docs.clutchprotocol.io/clutch-node/clt-economics](https://docs.cl
 | Block explorer | Done | [clutch-explorer](https://github.com/clutchprotocol/clutch-explorer) |
 | Public testnet (stage) | Live | Stage URLs; test CLT via Nile USDT deposits |
 | Fully-reserved CLT | Live | USDT deposits mint CLT; redemptions burn it back (on the testnet since 2026-09-04) |
-| Mainnet pilot | Live | Chain 1000, open to every account since 2026-10-05. Small limits ($100 per top-up, $200 per day). Top-ups are open; withdrawals are not open yet |
+| Mainnet pilot | Live | Chain 1000, open to every account since 2026-10-05. Small limits ($100 per top-up, $200 per day). Top-ups and withdrawals are open |
 | Production mainnet | Planned | Independent validator operators, audited crypto, treasury keys behind a hardware boundary, higher limits. No fixed date — see [Mainnet readiness](https://docs.clutchprotocol.io/reference/mainnet-readiness) |
 | Dispute resolution | Built, partly active | The rule that stops a rider taking a ride and keeping the money — a held fare releases to the driver after a set time — is implemented and merged. It is a genesis-committed consensus parameter: 5 minutes on the testnet and 2 hours on the mainnet. Arbitration and no-show handling are not built. |
 | Reputation | Planned | Ratings, and the history a rating would have to be earned against |
